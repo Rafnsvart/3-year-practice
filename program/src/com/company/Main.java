@@ -33,11 +33,14 @@ public class Main {
                     i++;
                 }
                 try{
-                    flag_count_temp[0] = Integer.parseInt(temp.get(0).replaceAll("\\s", "").split("=")[1]);
-                    t_pause_temp[0] = Integer.parseInt(temp.get(1).replaceAll("\\s", "").split("=")[1]);
+                    flag_count_temp[0] = Integer.parseInt(temp.get(0)
+                            .replaceAll("\\s", "").split("=")[1]);
+                    t_pause_temp[0] = Integer.parseInt(temp.get(1)
+                            .replaceAll("\\s", "").split("=")[1]);
                     if(flag_count_temp[0]==flag_count_temp[1]&&t_pause_temp[0]==t_pause_temp[1])
                     {
-                        String temp_mess = "Считан файл конфигурации "+System.lineSeparator()+"      Значения параметров не изменились";
+                        String temp_mess = "Считан файл конфигурации "+System.lineSeparator()
+                                +"      Значения параметров не изменились";
                         writeLog(temp_mess);
                         if (flag_count == 0)
                             break;
@@ -47,19 +50,24 @@ public class Main {
                         flag_count = flag_count_temp[0];
                         t_pause_temp[1] = t_pause_temp[0];
                         t_pause = t_pause_temp[0];
-                        String temp_mess = "Считан файл конфигурации " + System.lineSeparator() + "      Значения параметров: t_pause = " + t_pause + " flag_count = " + flag_count;
+                        String temp_mess = "Считан файл конфигурации " + System.lineSeparator()
+                                + "      Значения параметров: t_pause = " + t_pause + " flag_count = " + flag_count;
                         writeLog(temp_mess);
                         if (flag_count == 0)
                             break;
                     }
                 }catch(Exception e)
                 {
-                    String temp_mess = "Ошибка в считывании значени "+System.lineSeparator()+"       "+e.getMessage()+System.lineSeparator()+"      Значения параметров: t_pause = "+ t_pause + " flag_count = "+flag_count+System.lineSeparator()+"     "+e.getMessage();
+                    String temp_mess = "Ошибка в считывании значени "+System.lineSeparator()+"       "
+                            +e.getMessage()+System.lineSeparator()+"      Значения параметров: t_pause = "
+                            + t_pause + " flag_count = "+flag_count+System.lineSeparator()+"     "+e.getMessage();
                     writeLog(temp_mess);
                 }
             }catch (Exception e)
             {
-                String temp_mess = "Ошибка в открытии файла конфигурации "+System.lineSeparator()+"       "+e.getMessage()+System.lineSeparator()+"      Значения параметров: t_pause = "+ t_pause + " flag_count = "+flag_count+System.lineSeparator()+"     "+e.getMessage();
+                String temp_mess = "Ошибка в открытии файла конфигурации "+System.lineSeparator()+"       "
+                        +e.getMessage()+System.lineSeparator()+"      Значения параметров: t_pause = "
+                        + t_pause + " flag_count = "+flag_count+System.lineSeparator()+"     "+e.getMessage();
                 writeLog(temp_mess);
             }
             ///*** Если каталог "куда" производится копирования пуст, то производится перенос всех файлов
@@ -104,11 +112,13 @@ public class Main {
                             String tempName = i.getAbsolutePath();
                             Long tempTime = (date.getTime()-i.lastModified())/60000;
                             i.delete();
-                            String temp_mess = "Удален файл "+tempName+" по старости. Он был создан "+tempTime+" минут назад";
+                            String temp_mess = "Удален файл "+tempName+" по старости. Он был создан "
+                                    +tempTime+" минут назад";
                             writeLog(temp_mess);
                         }catch (Exception e)
                         {
-                            String temp_mess = "Файл "+i.getAbsolutePath()+" не удалось удалить"+flag_count+System.lineSeparator()+"      "+e.getMessage();
+                            String temp_mess = "Файл "+i.getAbsolutePath()+" не удалось удалить"
+                                    +flag_count+System.lineSeparator()+"      "+e.getMessage();
                             writeLog(temp_mess);
                         }
                     }
@@ -135,16 +145,19 @@ public class Main {
                     writeLog(temp_mess);
                 }catch(Exception e)
                 {
-                    String temp_mess = "Не удалось произвести копирование из "+i.getAbsolutePath()+" в "+tempString+System.lineSeparator()+"      "+e.getMessage();
+                    String temp_mess = "Не удалось произвести копирование из "+i.getAbsolutePath()+" в "
+                            +tempString+System.lineSeparator()+"      "+e.getMessage();
                     writeLog(temp_mess);
                 }           }
            catch(Exception e)           {
-            String temp_mess = "Не удалось создать поток для конечного файла "+tempString+System.lineSeparator()+"      "+e.getMessage();
+            String temp_mess = "Не удалось создать поток для конечного файла "+tempString+System.lineSeparator()
+                    +"      "+e.getMessage();
             writeLog(temp_mess);
         }
         }catch(Exception e)
         {
-            String temp_mess = "Не удалось открыть копируемый файл "+i.getAbsolutePath()+System.lineSeparator()+"      "+e.getMessage();;
+            String temp_mess = "Не удалось открыть копируемый файл "+i.getAbsolutePath()+System.lineSeparator()
+                    +"      "+e.getMessage();;
             writeLog(temp_mess);
         }
     }
@@ -158,7 +171,7 @@ public class Main {
             return true;
         }catch (IOException e)
         {
-            String temp_mess = "Файл " + file.getAbsolutePath()+" закрыт"+System.lineSeparator()+"      "+e.getMessage();;
+            String temp_mess = "Файл " + file.getAbsolutePath()+" закрыт"+System.lineSeparator()+"      " +e.getMessage();
             writeLog(temp_mess);
             return false;
         }
@@ -185,7 +198,10 @@ public class Main {
             {
                 break;
             }
-            i++;        }        return ret;    }
+            i++;
+        }
+        return ret;
+    }
     ///*** Производит поиск наличия копии файла в дирректории
     private static boolean contCopy(ArrayList<String> dirName, ArrayList<Long> dirSpace, File file) {
         for (int i = 0; i<dirName.size(); i++) {
@@ -198,7 +214,13 @@ public class Main {
                         ||((tempDir.lastIndexOf("(")>0)?(tempfile.startsWith(tempDir.substring(0, tempDir.lastIndexOf("(")))):(false))
                         ||(((tempDir.lastIndexOf("(")>0)&&(tempfile.lastIndexOf("(")>0))?(tempfile.substring(0, tempfile.lastIndexOf("(")).startsWith(tempDir.substring(0, tempDir.lastIndexOf("(")))):(false)))
                         &&dirSpace.get(i)==file.length())
-                {                    return true;                }            }        }       return false;    }
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     ///*** Проводит поиск на наличие файлов, от корых он мог стать копией
     private static boolean findCopyOutIn(File file, File[] arrayFiles)
     {
@@ -222,10 +244,12 @@ public class Main {
         }
         return false;
     }
-    private static void writeLog(String message) throws IOException {
+    private static void writeLog(String message) throws IOException
+    {
         Date date = new Date();
         FileWriter writer = new FileWriter(new File("D:\\Temp_Log\\log.txt"),true);
         BufferedWriter buff = new BufferedWriter(writer);
         buff.write(date.toString() + System.lineSeparator()+"      " + message+System.lineSeparator());
         buff.close();
-    }}
+    }
+}
